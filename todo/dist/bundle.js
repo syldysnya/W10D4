@@ -2,6 +2,68 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/actions/todo_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/todo_actions.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_TODOS": () => (/* binding */ RECEIVE_TODOS),
+/* harmony export */   "RECEIVE_TODO": () => (/* binding */ RECEIVE_TODO),
+/* harmony export */   "receiveTodos": () => (/* binding */ receiveTodos),
+/* harmony export */   "receiveTodo": () => (/* binding */ receiveTodo)
+/* harmony export */ });
+var RECEIVE_TODOS = "RECEIVE_TODOS";
+var RECEIVE_TODO = "RECEIVE_TODO";
+var receiveTodos = function receiveTodos(todos) {
+  return {
+    type: RECEIVE_TODOS,
+    todos: todos
+  };
+};
+var receiveTodo = function receiveTodo(todo) {
+  return {
+    type: RECEIVE_TODO,
+    todo: todo
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/reducers/todos_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/todos_reducer.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/todo_actions */ "./frontend/actions/todo_actions.js");
+
+
+var todosReducer = function todosReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TODOS:
+      nextState[action.todos.id] = action.todo;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (todosReducer);
+
+/***/ }),
+
 /***/ "./node_modules/object-assign/index.js":
 /*!*********************************************!*\
   !*** ./node_modules/object-assign/index.js ***!
@@ -29840,6 +29902,23 @@ if (false) {} else {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -29861,11 +29940,29 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _frontend_reducers_todos_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./frontend/reducers/todos_reducer */ "./frontend/reducers/todos_reducer.js");
 
 
+
+var todos = {
+  1: {
+    id: 1,
+    title: 'wash car',
+    body: 'with soap',
+    done: false
+  },
+  2: {
+    id: 2,
+    title: 'wash dog',
+    body: 'with shampoo',
+    done: true
+  }
+};
 document.addEventListener("DOMContentLoaded", function () {
-  var root = document.getElementById("root");
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "HI!!"), root);
+  var root = document.getElementById("root"); // console.log();
+
+  window.todosReducer = _frontend_reducers_todos_reducer__WEBPACK_IMPORTED_MODULE_2__.default;
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Super Awesome Todo List"), root);
 });
 })();
 
