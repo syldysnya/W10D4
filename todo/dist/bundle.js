@@ -88,11 +88,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_TODOS": () => (/* binding */ RECEIVE_TODOS),
 /* harmony export */   "RECEIVE_TODO": () => (/* binding */ RECEIVE_TODO),
+/* harmony export */   "REMOVE_TODO": () => (/* binding */ REMOVE_TODO),
 /* harmony export */   "receiveTodos": () => (/* binding */ receiveTodos),
-/* harmony export */   "receiveTodo": () => (/* binding */ receiveTodo)
+/* harmony export */   "receiveTodo": () => (/* binding */ receiveTodo),
+/* harmony export */   "removeTodo": () => (/* binding */ removeTodo)
 /* harmony export */ });
 var RECEIVE_TODOS = "RECEIVE_TODOS";
 var RECEIVE_TODO = "RECEIVE_TODO";
+var REMOVE_TODO = "REMOVE_TODO";
 var receiveTodos = function receiveTodos(todos) {
   return {
     type: RECEIVE_TODOS,
@@ -102,6 +105,12 @@ var receiveTodos = function receiveTodos(todos) {
 var receiveTodo = function receiveTodo(todo) {
   return {
     type: RECEIVE_TODO,
+    todo: todo
+  };
+};
+var removeTodo = function removeTodo(todo) {
+  return {
+    type: REMOVE_TODO,
     todo: todo
   };
 };
@@ -164,10 +173,19 @@ var todosReducer = function todosReducer() {
 
   switch (action.type) {
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TODOS:
-      nextState[action.todos.id] = action.todos;
+      action.todos.forEach(function (todo_list) {
+        return nextState[todo_list.id] = todo_list;
+      });
+      return nextState;
 
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TODO:
       nextState[action.todo.id] = action.todo;
+      return nextState;
+
+    case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_TODO:
+      var todoId = action.todo.id;
+      delete nextState["".concat(todoId)];
+      return nextState;
 
     default:
       return state;
@@ -30781,8 +30799,10 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _frontend_reducers_todos_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./frontend/reducers/todos_reducer */ "./frontend/reducers/todos_reducer.js");
-/* harmony import */ var _frontend_store_store_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./frontend/store/store.js */ "./frontend/store/store.js");
+/* harmony import */ var _frontend_actions_todo_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./frontend/actions/todo_actions */ "./frontend/actions/todo_actions.js");
+/* harmony import */ var _frontend_reducers_todos_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./frontend/reducers/todos_reducer */ "./frontend/reducers/todos_reducer.js");
+/* harmony import */ var _frontend_store_store_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./frontend/store/store.js */ "./frontend/store/store.js");
+
 
 
 
@@ -30790,7 +30810,10 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById("root"); // console.log();
 
-  window.store = (0,_frontend_store_store_js__WEBPACK_IMPORTED_MODULE_3__.default)();
+  window.removeTodo = _frontend_actions_todo_actions__WEBPACK_IMPORTED_MODULE_2__.removeTodo;
+  window.receiveTodo = _frontend_actions_todo_actions__WEBPACK_IMPORTED_MODULE_2__.receiveTodo;
+  window.receiveTodos = _frontend_actions_todo_actions__WEBPACK_IMPORTED_MODULE_2__.receiveTodos;
+  window.store = (0,_frontend_store_store_js__WEBPACK_IMPORTED_MODULE_4__.default)();
   console.log(store.getState());
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Super Awesome Todo List"), root);
 });
