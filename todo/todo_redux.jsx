@@ -1,22 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { receiveStep, receiveSteps, removeStep } from './frontend/actions/step_actions';
-import { receiveTodo, receiveTodos, removeTodo } from './frontend/actions/todo_actions';
-import todosReducer from './frontend/reducers/todos_reducer';
-import configureStore from './frontend/store/store.js'
+import Root from './frontend/components/root'
+import { allTodos } from './frontend/reducers/selectors';
+import configureStore from './frontend/store/store';
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
-    // console.log();
-    window.receiveSteps = receiveSteps;
-    window.receiveStep = receiveStep;
-    window.removeStep = removeStep;
-    window.removeTodo = removeTodo;
-    window.receiveTodo = receiveTodo;
-    window.receiveTodos = receiveTodos;
-    window.store = configureStore()
-    console.log(store.getState());
-    ReactDOM.render(<h1>Super Awesome Todo List</h1>, root);
+    const store = configureStore();
+    window.store = store
+    window.allTodos = allTodos;
+
+    ReactDOM.render(<Root store={store}/>, root);
 })
