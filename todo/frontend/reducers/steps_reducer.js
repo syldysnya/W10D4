@@ -23,7 +23,7 @@ const stepsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case RECEIVE_STEPS:
-            debugger
+            // debugger
             action.steps.forEach(step => nextState[step.id] = step);
             return nextState;
         case RECEIVE_STEP:

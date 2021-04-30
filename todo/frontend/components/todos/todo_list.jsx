@@ -1,11 +1,11 @@
 import React from 'react';
+import { TodoListItem } from '../todo_list/todo_list_item';
 
 export const TodoList = ({ todos }) => {
+    debugger
     return (
-        <div>
             <ul>
-                {todos.map(todo => <li>{todo.title}</li>)}
+                {todos.map(todo => <TodoListItem key={todo.id} todo={todo}/>)}
             </ul>
-        </div>
     )
 }

@@ -7,6 +7,18 @@ const initialState = {
         title: 'take a shower',
         body: 'and be clean',
         done: false
+    },
+     2: {
+        id: 2,
+        title: 'take a bath',
+        body: 'and be clean',
+        done: false
+    },
+     3: {
+        id: 3,
+        title: 'brush teeth',
+        body: 'and be clean',
+        done: false
     }
 
 };
