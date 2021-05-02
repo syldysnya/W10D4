@@ -1,31 +1,47 @@
 import React from 'react';
+import { uniqueID } from '../../util/util';
 
 class TodoForm extends React.Component {
     constructor (props) {
         super(props)
-        this.state = { title: "", body: "" }
+        this.state = { 
+            id: uniqueID() ,
+            title: "",
+            body: "" 
+        }
         this.updateTitle = this.updateTitle.bind(this);
         this.updateBody = this.updateBody.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     updateTitle(e) {
-        e.preventDefault();  
-        
         const title = e.target.value;
         this.setState({ title })
     }
 
-    updateBody(e) {
-        e.preventDefault();    
-        
+    updateBody(e) { 
         const body = e.target.value;
         this.setState({ body })
     }
 
+    handleSubmit(e)  {
+        e.preventDefault()
+        debugger
+        this.props.receiveTodo(this.state)
+        this.setState({
+            id: uniqueID() ,
+            title: "",
+            body: ""
+        })
+    }
+
+
+
+
     render () {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label>Title:
                         <input onChange={this.updateTitle} 
                             type="text"
@@ -37,7 +53,7 @@ class TodoForm extends React.Component {
                             type="text"
                             value={this.state.body} />
                     </label>
-
+                 <input type="submit" value="Create Todo"/>
                 </form>
             </div>
         )

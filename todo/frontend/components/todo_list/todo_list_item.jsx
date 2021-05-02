@@ -4,7 +4,10 @@ export const TodoListItem = (props) => {
     debugger
     return (
         
-        <li >{props.todo.title}</li>
+        <li >{props.todo.title}
+            <button onClick={() => props.removeTodo(props.todo)}>Delete</button>
+        </li>
+
     )
 }
 
