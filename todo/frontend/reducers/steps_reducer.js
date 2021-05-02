@@ -5,12 +5,14 @@ const initialState = {
     1: { // this is the step with id = 1
         id: 1,
             title: 'walk to store',
+            body: 'body 1',
                 done: false,
                     todo_id: 1
     },
     2: { // this is the step with id = 2
         id: 2,
             title: 'buy soap',
+            body: 'body 2',
                 done: false,
                     todo_id: 1
     }

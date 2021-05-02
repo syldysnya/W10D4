@@ -1,5 +1,7 @@
 import React from "react"
+import { StepListItem } from "../step_list/step_list_item";
 import { TodoDetailView } from "./todo_detail_view";
+import { StepList } from '../step_list/step_list';
 
 class TodoListItem extends React.Component {
 
@@ -48,6 +50,7 @@ class TodoListItem extends React.Component {
                     removeTodo={this.props.removeTodo}
                     todo={this.props.todo}/>
                 </div>
+
             )
         }
         // debugger
