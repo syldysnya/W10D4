@@ -1,6 +1,6 @@
 import React from 'react';
 import TodoForm from '../todo_list/todo_form';
-import { TodoListItem } from '../todo_list/todo_list_item';
+import TodoListItem from '../todo_list/todo_list_item';
 
 export const TodoList = (props) => {
     debugger
@@ -10,8 +10,8 @@ export const TodoList = (props) => {
                 {props.todos.map(todo => <TodoListItem 
                             receiveTodo={props.receiveTodo}
                             removeTodo = {props.removeTodo}
-                             key={todo.id} 
-                             todo={todo}
+                            key={todo.id} 
+                            todo={todo}
                         />
                      )}
                 </ul>

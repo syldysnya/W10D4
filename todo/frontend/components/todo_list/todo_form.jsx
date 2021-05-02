@@ -7,11 +7,13 @@ class TodoForm extends React.Component {
         this.state = { 
             id: uniqueID() ,
             title: "",
-            body: "" 
+            body: "",
+            done: false
         }
         this.updateTitle = this.updateTitle.bind(this);
         this.updateBody = this.updateBody.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     updateTitle(e) {
@@ -31,12 +33,10 @@ class TodoForm extends React.Component {
         this.setState({
             id: uniqueID() ,
             title: "",
-            body: ""
+            body: "",
+            done: false
         })
     }
-
-
-
 
     render () {
         return (

@@ -9,10 +9,10 @@ const mSTP = (state) => {
 }
 
 const mDTP = (dispatch) => {
-    debugger
+    // debugger
     return {
         receiveTodo: (todo) => {
-            debugger
+            // debugger
             dispatch(receiveTodo(todo))
         },
         removeTodo: (todo) => {
